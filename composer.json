@@ -1,0 +1,21 @@
+{
+    "name": "skensheeaugustine/what_new_api",
+    "description": "News Api rest",
+  
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Skensheeaugustine\\WhatNewApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Skenshee Augustin",
+            "email": "skenshee@gmail.com"
+        }
+    ],
+    "require": {
+        "jcobhams/newsapi": "^1.0",
+        "firebase/php-jwt": "^5.4"
+    }
+}
