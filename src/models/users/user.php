@@ -7,7 +7,7 @@ namespace UserManager {
   class Author extends Utils
   {
 
-    private   $conn;
+    private  PDO $conn;
     private $table = "authors";
     private  $utils;
     //
@@ -45,14 +45,14 @@ namespace UserManager {
       $this->user_image = htmlspecialchars(strip_tags($this->user_image));
 
       if ($prepare) {
-        $prepare->bindParam(":ctr",                        $this->ctr);
-        $prepare->bindParam(":name",                      $this->name);
-        $prepare->bindParam(":lang",                      $this->lang);
-        $prepare->bindParam(":prov",                      $this->prov);
-        $prepare->bindParam(":mail",                       $this->mail);
-        $prepare->bindParam(":password",               $this->password);
-        $prepare->bindParam(":lastname",               $this->lastname);
-        $prepare->bindParam(":user_image",            $this->user_image);
+        $prepare->bindValue(":ctr",                        $this->ctr);
+        $prepare->bindValue(":name",                      $this->name);
+        $prepare->bindValue(":lang",                      $this->lang);
+        $prepare->bindValue(":prov",                      $this->prov);
+        $prepare->bindValue(":mail",                       $this->mail);
+        $prepare->bindValue(":password",               $this->password);
+        $prepare->bindValue(":lastname",               $this->lastname);
+        $prepare->bindValue(":user_image",            $this->user_image);
 
         if ($prepare->execute()) {
           return 1;

@@ -16,7 +16,7 @@ namespace  UserManager {
 
     public function __construct($table)
     {
-      $this->query_post = "INSERT INTO  $table SET name= :name, lastname= :lastname, ctr= :ctr, lang= :lang, prov= :prov, mail= :mail, password= :password, user_image= :user_image";
+      $this->query_post = "INSERT INTO  $table(name,lastname, ctr,lang,prov,mail,password,user_image)  VALUES(:name, :lastname, :ctr,  :lang,  :prov,  :mail,  :password,  :user_image)";
       $this->query_get  = "SELECT * FROM $table WHERE mail= :mail and  password= :password";
       $this->query_get_with_name  = "SELECT *  FROM $table WHERE mail= :mail and  name= :name";
       $this->query_get_all  = "SELECT *  FROM $table";
