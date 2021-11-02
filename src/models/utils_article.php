@@ -6,15 +6,17 @@ namespace Article {
   {
     protected $post_query;
     protected  $get_query;
-    protected  $get_my_news_query;
-    protected  $delete_by_id_query;
 
     public function __construct($table)
     {
-      $this->post_query = "INSERT INTO  $table  SET author = :author, title= :title, description= :description, url= :url, urlToImage= :urlToImage, publishedAt= :publishedAt, content= :content,  lang = :lang, country = :country";
+      $this->post_query = "INSERT INTO  $table(author,title,description,url,urlToImage,publishedAt,content,lang,country)  :author,  :title,  :description,  :url,  :urlToImage,  :publishedAt, :content,    :lang,   :country";
       $this->get_query = "SELECT * FROM $table";
-      $this->get_my_news_query = "SELECT * FROM $table WHERE author= :author";
-      $this->delete_by_id_query = "DELETE  FROM $table WHERE id= :id and author= :author";
+    }
+    protected function get_my_news_query($table,$author){
+      return "SELECT * FROM $table WHERE author= $author";
+    }
+    protected function delete_by_id_query($table,$id,$author){
+      return  "DELETE  FROM $table WHERE id= $id and author= $author";
     }
   }
 }

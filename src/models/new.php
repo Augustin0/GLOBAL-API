@@ -110,15 +110,15 @@ namespace Article {
          $this->publishedAt = htmlspecialchars(strip_tags($this->publishedAt));
 
          if ($prepare) {
-            $prepare->bindParam(":url", $this->url);
-            $prepare->bindParam(":lang", $this->lang);
-            $prepare->bindParam(":title", $this->title);
-            $prepare->bindParam(":author", $this->author);
-            $prepare->bindParam(":country", $this->ctr);
-            $prepare->bindParam(":content", $this->content);
-            $prepare->bindParam(":urlToImage", $this->urlToImage);
-            $prepare->bindParam(":description", $this->description);
-            $prepare->bindParam(":publishedAt", $this->publishedAt);
+            $prepare->bindValue(":url", $this->url);
+            $prepare->bindValue(":lang", $this->lang);
+            $prepare->bindValue(":title", $this->title);
+            $prepare->bindValue(":author", $this->author);
+            $prepare->bindValue(":country", $this->ctr);
+            $prepare->bindValue(":content", $this->content);
+            $prepare->bindValue(":urlToImage", $this->urlToImage);
+            $prepare->bindValue(":description", $this->description);
+            $prepare->bindValue(":publishedAt", $this->publishedAt);
 
             if ($prepare->execute()) return 1;
             else return -1;
@@ -132,7 +132,7 @@ namespace Article {
          $my_news = [];
          $prepare = $this->conn->prepare($this->utils->get_my_news_query);
          if (!$prepare) return [];
-         $prepare->bindParam(":author", $this->author);
+         $prepare->bindValue(":author", $this->author);
          if (!$prepare->execute()) return [];
 
          while ($row = $prepare->fetch(PDO::FETCH_ASSOC)) {
@@ -162,8 +162,8 @@ namespace Article {
          if (!$this->id or !$this->author) return 0;
          $prepare = $this->conn->prepare($this->utils->delete_by_id_query);
          if (!$prepare) return 0;
-         $prepare->bindParam(":id", $this->id);
-         $prepare->bindParam(":author", $this->author);
+         $prepare->bindValue(":id", $this->id);
+         $prepare->bindValue(":author", $this->author);
          if (!$prepare->execute()) return 0;
          //unlink file
          return 1;

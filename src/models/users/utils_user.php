@@ -8,8 +8,6 @@ namespace  UserManager {
   {
 
     protected $query_post;
-    protected $query_get;
-    protected $query_get_with_name;
     protected $query_get_all;
     protected $query_put;
 
@@ -17,10 +15,11 @@ namespace  UserManager {
     public function __construct($table)
     {
       $this->query_post = "INSERT INTO  $table(name,lastname, ctr,lang,prov,mail,password,user_image)  VALUES(:name, :lastname, :ctr,  :lang,  :prov,  :mail,  :password,  :user_image)";
-      $this->query_get  = "SELECT * FROM $table WHERE mail= :mail and  password= :password";
-      $this->query_get_with_name  = "SELECT *  FROM $table WHERE mail= :mail and  name= :name";
-      $this->query_get_all  = "SELECT *  FROM $table";
+     
     }
+    public function query_get ($table,$mail,$password){return "SELECT * FROM $table WHERE mail= $mail and  password= $password";}
+    public function query_get_with_name($table,$mail,$name){return  "SELECT *  FROM $table WHERE mail= $mail and  name= $name";}
+    public function query_get_all($table){return "SELECT *  FROM $table";}
 
     protected function genToken(array $user)
     {
