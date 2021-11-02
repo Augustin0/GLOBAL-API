@@ -66,9 +66,9 @@ namespace UserManager {
     {
 
       if (!$this->mail | !$this->password) return 0;
-      $prepare = $this->conn->prepare($this->utils->query_get($this->table,$this->mail,$this->password));
+      $prepare = $this->conn->prepare($this->utils->query_get);
       if ($prepare) {
-        if ($prepare->execute()) {
+        if ($prepare->execute([$this->mail,$this->password])) {
           $row = $prepare->fetch(PDO::FETCH_ASSOC);
           if (!$row) return 0;
           extract($row);
@@ -87,9 +87,9 @@ namespace UserManager {
       $this->mail = $data["data"]->mail;
       $this->name = $data["data"]->name;
       if (!$this->mail | !$this->name) return -3;
-      $prepare = $this->conn->prepare($this->utils->query_get_with_name($this->table,$this->mail,$this->name));
+      $prepare = $this->conn->prepare($this->utils->query_get_with_name);
       if ($prepare) {
-        if ($prepare->execute()) {
+        if ($prepare->execute([$this->mail,$this->name])) {
           $row = $prepare->fetch(PDO::FETCH_ASSOC);
           if (!$row) return -7;
           extract($row);
@@ -103,7 +103,7 @@ namespace UserManager {
     public function list_users()
     {
       $list_users = [];
-      $prepare = $this->conn->prepare($this->utils->query_get_all($this->table));
+      $prepare = $this->conn->prepare($this->utils->query_get_all);
       if ($prepare) {
         if ($prepare->execute()) {
           while ($row = $prepare->fetch(PDO::FETCH_ASSOC)) {
