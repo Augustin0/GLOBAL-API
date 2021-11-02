@@ -19,9 +19,9 @@ function save_file($fieldName,$repos=""){
        $type=$valid_file_exten[$type];
        $uniqName=hexdec(uniqid());
        $fileName=$uniqName.".".$type;
-        move_uploaded_file($tmp,"../../public/img/$repos".$fileName);
+        move_uploaded_file($tmp,dirname(__DIR__)."/../public/img/$repos".$fileName);
        $url="https://news-api-global.herokuapp.com/src/public/img/$repos".$fileName;
-        return ["url"=>$url,"origin"=>"../../public/img/$repos".$fileName];
+        return ["url"=>$url,"origin"=>dirname(__DIR__)."/../public/img/$repos".$fileName];
      }else return false;
      
     
