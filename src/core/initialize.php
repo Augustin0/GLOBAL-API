@@ -3,8 +3,8 @@
 //REMOTE :
 defined("DS") ? NULL : define("DS", DIRECTORY_SEPARATOR);
 
-if(getenv()["Local"]==false) define("ROOT_DIR","https://news-api-global.herokuapp.com".DS);
-else defined("ROOT_DIR") ? NULL : define("ROOT_DIR", DS . "xampp" . DS . "htdocs" . DS . "APIS" . DS . "what_new_api" . DS);
+if(getenv()["Local"]=="false") define("ROOT_DIR","https://news-api-global.herokuapp.com".DS);
+else defined("ROOT_DIR") ? NULL : define("ROOT_DIR",/* DS . "xampp" . DS . "htdocs" . DS . "APIS" . DS . "what_new_api" */"https://news-api-global.herokuapp.com". DS);
 defined("INC") ? NULL : define("INC", ROOT_DIR . "src" . DS . "includes" . DS);
 defined("COR") ? NULL : define("COR", ROOT_DIR . "src" . DS . "core" . DS);
 defined("MODELS") ? NULL : define("MODELS", ROOT_DIR . "src" . DS . "models" . DS);
