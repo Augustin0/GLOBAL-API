@@ -7,7 +7,7 @@ namespace UserManager {
   class Author extends Utils
   {
 
-    private  PDO $conn;
+    private  $conn;
     private $table = "authors";
     private  $utils;
     //
