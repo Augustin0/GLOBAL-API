@@ -78,8 +78,8 @@ namespace Article {
                   "title"             => $title,
                   "description" => $description,
                   "url"                  => $url,
-                  "urlToImage"    => $urlToImage,
-                  "publishedAt"   => $publishedAt,
+                  "urlToImage"    => $urltoimage,
+                  "publishedAt"   => $publishedat,
                   "content"           => $content,
                );
                array_push($local_data, $data);
