@@ -2,16 +2,17 @@
 
 class DBconfig
 {
-   protected $db_user = "root";
-   protected $db_pass = "";
-   protected $db_host = "localhost:3308";
-   protected $db_name = "api_what_new";
+  
    protected $dsn;
    public $connection;
    public function __construct()
-   {
-      $this->dsn = "mysql:host=" . $this->db_host . ";dbname=" . $this->db_name . ";";
-      if (!$this->connection) $this->connection = new PDO($this->dsn, $this->db_user, $this->db_pass);
+   { 
+      $user =getenv()["DB_USER"];//getenv("DB_USER");
+      $password = getenv()["DB_PASS"];//getenv("DB_PASS");
+      $db_host = getenv()["DB_HOST"].":".getenv()["DB_PORT"] ;//getenv("DB_HOST");
+      $db_name =getenv()["DB_NAME"];// getenv("DB_NAME");
+      $this->dsn = "pgsql:host=$db_host;dbname=$db_name;";
+      if (!$this->connection) $this->connection = new PDO($this->dsn,$user,$password);
    }
 
    public function get()
