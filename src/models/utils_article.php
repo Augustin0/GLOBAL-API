@@ -9,7 +9,7 @@ namespace Article {
 
     public function __construct($table)
     {
-      $this->post_query = "INSERT INTO  $table(author,title,description,url,urlToImage,publishedAt,content,lang,country)  :author,  :title,  :description,  :url,  :urlToImage,  :publishedAt, :content,    :lang,   :country";
+      $this->post_query = "INSERT INTO  $table(author,title,description,url,urlToImage,publishedAt,content,lang,country)  VALUES(:author, :title, :description, :url, :urlToImage, :publishedAt, :content, :lang,  :country)";
       $this->get_query = "SELECT * FROM $table";
     }
     protected function get_my_news_query($table,$author){

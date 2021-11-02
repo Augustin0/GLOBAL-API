@@ -130,9 +130,8 @@ namespace Article {
       {
          if (!$this->author) return [];
          $my_news = [];
-         $prepare = $this->conn->prepare($this->utils->get_my_news_query);
+         $prepare = $this->conn->prepare($this->utils->get_my_news_query($this->table,$this->author));
          if (!$prepare) return [];
-         $prepare->bindValue(":author", $this->author);
          if (!$prepare->execute()) return [];
 
          while ($row = $prepare->fetch(PDO::FETCH_ASSOC)) {
@@ -160,10 +159,8 @@ namespace Article {
       public function delete()
       {
          if (!$this->id or !$this->author) return 0;
-         $prepare = $this->conn->prepare($this->utils->delete_by_id_query);
+         $prepare = $this->conn->prepare($this->utils->delete_by_id_query($this->table,$this->id,$this->author));
          if (!$prepare) return 0;
-         $prepare->bindValue(":id", $this->id);
-         $prepare->bindValue(":author", $this->author);
          if (!$prepare->execute()) return 0;
          //unlink file
          return 1;

@@ -89,8 +89,6 @@ namespace UserManager {
       if (!$this->mail | !$this->name) return -3;
       $prepare = $this->conn->prepare($this->utils->query_get_with_name($this->table,$this->mail,$this->name));
       if ($prepare) {
-        $prepare->bindValue(":mail", $this->mail);
-        $prepare->bindValue(":name", $this->name);
         if ($prepare->execute()) {
           $row = $prepare->fetch(PDO::FETCH_ASSOC);
           if (!$row) return -7;
