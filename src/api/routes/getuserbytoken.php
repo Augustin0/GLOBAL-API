@@ -7,33 +7,18 @@ include_once("../../core/initialize.php");
   
  header($ALLOW_ORIGIN);
  header($CONTENT_TYPE_JSON);
+ 
+ if($method=$_SERVER["REQUEST_METHOD"]!="GET")   die("Method $method not allowed");
+  
+if(!isset($_GET["token"]))      die(json_encode(["res"=>["data"=>[],"error"=>1]]));
 
-  if($_SERVER["REQUEST_METHOD"]=="GET") 
-  {
-    if(!isset($_GET["token"])){echo json_encode(["res"=>["data"=>[],"error"=>1]]);return;};
-    $token=$_GET["token"];
-    if(!$token){echo json_encode(["res"=>["data"=>[],"error"=>2]]);return;};
-    $user=new Author($connection);
-    $user->token=$token;
-    $user_data=$user->validateUser();
+$token                                                            =$_GET["token"];
+if(strlen($token)<150)                                die("Invalid token access");
 
-    if(!$user_data){echo json_encode(["res"=>["data"=>[],"error"=>3]]); return;}
-    echo json_encode(["res"=>["data"=> $user_data,"error"=>0]]);
-  }
-  else
-  {
-    echo json_encode(["res"=>["data"=>[],"error"=>4]]);
-    return;
-  }
+$user                                                    =new Author($connection);
+$user->token                                                              =$token;
+$user_data                                                 =$user->validateUser();
 
+if(!$user_data)                                               die("Acces denied");
 
-
-
-
-
-
-
-
-
-
-?>
+echo(json_encode(["res"=>["data"=> $user_data,"error"=>0]]));
