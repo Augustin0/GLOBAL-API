@@ -20,7 +20,7 @@ function save_file($fieldName,$repos=""){
        $uniqName=hexdec(uniqid());
        $fileName=$uniqName.".".$type;
         move_uploaded_file($tmp,"../../public/img/$repos".$fileName);
-       $url="http://localhost/APIS/what_new_api/src/public/img/$repos".$fileName;
+       $url="https://news-api-global.herokuapp.com/src/public/img/$repos".$fileName;
         return ["url"=>$url,"origin"=>"../../public/img/$repos".$fileName];
      }else return false;
      
