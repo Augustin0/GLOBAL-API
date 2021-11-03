@@ -13,7 +13,7 @@ class DBconfig
       $db_name =getenv()["DB_NAME"];
       $dbtype=getenv()["DB_TYPE"];
       $this->dsn = "$dbtype:host=$db_host;dbname=$db_name;";
-      if (!$this->connection) $this->connection = new PDO($this->dsn,$user,"");
+      if (!$this->connection) $this->connection = new PDO($this->dsn,$user,$password);
    }
 
    public function get()
