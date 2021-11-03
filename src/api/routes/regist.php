@@ -12,12 +12,12 @@ header($ALLOWS_HEADERS); //access conroll
 
 $method = $_SERVER["REQUEST_METHOD"];
 
-if ($method != "POST")                             die(json_encode(["message"=>"Method $method not allowed","error"=>true]));
+if ($method != "POST")                             die(json_encode([["message"=>"Method $method not allowed","error"=>true]]));
 
-if (!validateFormRegist())                                        die(json_encode(["message"=>"Invald data","error"=>true]));
+if (!validateFormRegist())                                        die(json_encode([["message"=>"Invald data","error"=>true]]));
 
 $fileData                                                                                 =save_file("user_image", "users/");
-if (!$fileData)                                  die(json_encode(["message"=>"Something wrong with the file","error"=>true]));
+if (!$fileData)                                  die(json_encode([["message"=>"Something wrong with the file","error"=>true]]));
 $body                                                                                                                = $_POST;
 $user                                                                                              =  new Author($connection);
 
@@ -34,7 +34,7 @@ $res                                                                            
 
 if ($res <= 0) {
   unlink($fileData["origin"]);
-  die (json_encode(["message" => "profile required", "error" => true]));
+  die (json_encode([["message" => "profile required", "error" => true]]));
 }
 
-echo (json_encode(["message" => "Success", "error" => false]));
+echo (json_encode([["message" => "Success", "error" => false]]));
