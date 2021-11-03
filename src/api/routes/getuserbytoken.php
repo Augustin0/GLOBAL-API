@@ -12,12 +12,12 @@ include_once("../../core/initialize.php");
   
 if(!isset($_GET["token"]))                           die(json_encode([["message"=>"Token access  required","error"=>true]]));
 
-$token                                                                                                     =$_GET["token"];
-if(strlen($token)<150)                                               die([["message"=>"Invalid token access","error"=>true]]);
+$token                                                                                                        =$_GET["token"];
+if(strlen($token)<150)                                  die(json_encode([["message"=>"Invalid token access","error"=>true]]));
 
-$user                                                                                             =new Author($connection);
-$user->token                                                                                                       =$token;
-$user_data                                                                                          =$user->validateUser();
+$user                                                                                                =new Author($connection);
+$user->token                                                                                                          =$token;
+$user_data                                                                                             =$user->validateUser();
 
 if(!$user_data)                                                 die(json_encode([["message"=>"Acces denied","error"=>true]]));
 
